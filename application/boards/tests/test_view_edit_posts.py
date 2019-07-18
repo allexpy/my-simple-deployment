@@ -47,7 +47,7 @@ class UnauthorizedPostUpdateViewTests(PostUpdateViewTestCase):
         A topic should be edited only by the owner.
         Unauthorized users should get a 404 response (Page Not Found)
         """
-        self.assertEquals(self.response.status_code, 404)
+        self.assertEqual(self.response.status_code, 404)
 
 
 class PostUpdateViewTests(PostUpdateViewTestCase):
@@ -58,11 +58,11 @@ class PostUpdateViewTests(PostUpdateViewTestCase):
         self.response = self.client.get(self.url)
 
     def test_status_code(self):
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_view_class(self):
         view = resolve('/boards/1/topics/1/posts/1/edit/')
-        self.assertEquals(view.func.view_class, PostUpdateView)
+        self.assertEqual(view.func.view_class, PostUpdateView)
 
     def test_csrf(self):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
@@ -95,7 +95,7 @@ class SuccessfulPostUpdateViewTests(PostUpdateViewTestCase):
 
     def test_post_changed(self):
         self.post.refresh_from_db()
-        self.assertEquals(self.post.message, 'edited message')
+        self.assertEqual(self.post.message, 'edited message')
 
 
 class InvalidPostUpdateViewTests(PostUpdateViewTestCase):
@@ -112,7 +112,7 @@ class InvalidPostUpdateViewTests(PostUpdateViewTestCase):
         """
         An invalid form submission should return to the same page
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_form_errors(self):
         form = self.response.context.get('form')

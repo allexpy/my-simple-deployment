@@ -17,14 +17,14 @@ class SignUpTests(TestCase):
         """
         Checks url status code when accessing it.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_signup_url_resolves_signup_view(self):
         """
         Checks if url uses this view.
         """
         view = resolve('/signup')
-        self.assertEquals(view.func.view_class, SignUpView)
+        self.assertEqual(view.func.view_class, SignUpView)
 
     def test_csrf(self):
         """
@@ -86,7 +86,7 @@ class InvalidSignUpTests(TestCase):
         """
         An invalid form submission should return to the same page.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_form_errors(self):
         """

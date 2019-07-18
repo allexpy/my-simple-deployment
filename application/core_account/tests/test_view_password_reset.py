@@ -19,14 +19,14 @@ class PasswordResetTests(TestCase):
         """
         Checks url status code when accessing it.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_view_function(self):
         """
         Checks if url uses this view.
         """
         view = resolve('/password_reset')
-        self.assertEquals(view.func.view_class, auth_views.PasswordResetView)
+        self.assertEqual(view.func.view_class, auth_views.PasswordResetView)
 
     def test_csrf(self):
         """
@@ -89,7 +89,7 @@ class InvalidPasswordResetTests(TestCase):
         """
         Checks if an email was sent.
         """
-        self.assertEquals(0, len(mail.outbox))
+        self.assertEqual(0, len(mail.outbox))
 
 
 class PasswordResetDoneTests(TestCase):
@@ -102,14 +102,14 @@ class PasswordResetDoneTests(TestCase):
         """
         Checks url status code when accessing it.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_view_function(self):
         """
         Checks if url uses this view.
         """
         view = resolve('/password_reset/done')
-        self.assertEquals(view.func.view_class, auth_views.PasswordResetDoneView)
+        self.assertEqual(view.func.view_class, auth_views.PasswordResetDoneView)
 
 
 class PasswordResetConfirmTests(TestCase):
@@ -125,14 +125,14 @@ class PasswordResetConfirmTests(TestCase):
         """
         Checks url status code.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_view_function(self):
         """
         Checks if url uses this view.
         """
         view = resolve('/reset/{uid64}/{token}'.format(uid64=self.uid, token=self.token))
-        self.assertEquals(view.func.view_class, auth_views.PasswordResetConfirmView)
+        self.assertEqual(view.func.view_class, auth_views.PasswordResetConfirmView)
 
     def test_csrf(self):
         """
@@ -172,7 +172,7 @@ class InvalidPasswordResetConfirmTests(TestCase):
         """
         Checks url status code.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_html(self):
         """
@@ -193,11 +193,11 @@ class PasswordResetCompleteTests(TestCase):
         """
         Checks url status code.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_view_function(self):
         """
         Checks if url uses this view.
         """
         view = resolve('/reset/done')
-        self.assertEquals(view.func.view_class, auth_views.PasswordResetCompleteView)
+        self.assertEqual(view.func.view_class, auth_views.PasswordResetCompleteView)

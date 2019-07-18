@@ -19,14 +19,14 @@ class PasswordChangeTests(TestCase):
         """
         Checks url status code.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_url_resolves_correct_view(self):
         """
         Checks if url uses this view.
         """
         view = resolve('/settings/password/')
-        self.assertEquals(view.func.view_class, auth_views.PasswordChangeView)
+        self.assertEqual(view.func.view_class, auth_views.PasswordChangeView)
 
     def test_csrf(self):
         """
@@ -106,7 +106,7 @@ class InvalidPasswordChangeTests(PasswordChangeTestCase):
         """
         An invalid form submission should return to the same page
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_form_errors(self):
         """

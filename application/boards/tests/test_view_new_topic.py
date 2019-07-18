@@ -20,7 +20,7 @@ class NewTopicTests(TestCase):
         """
         Checks url status code when accessing it.
         """
-        self.assertEquals(self.response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_new_topic_view_not_found_status_code(self):
         """
@@ -28,14 +28,14 @@ class NewTopicTests(TestCase):
         """
         url = reverse('new_topic', kwargs={'pk': 99})
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
     def test_new_topic_url_resolve_new_topic_view(self):
         """
         Checks if url uses this view.
         """
         view = resolve('/boards/1/new')
-        self.assertEquals(view.func.view_class, NewTopicView)
+        self.assertEqual(view.func.view_class, NewTopicView)
 
     def test_new_topic_view_contains_link_back_to_board_topics_view(self):
         """
@@ -69,7 +69,7 @@ class NewTopicTests(TestCase):
         """
         response = self.client.post(self.url, {})
         form = response.context.get('form')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTrue(form.errors)
 
     def test_new_topic_invalid_post_data_empty_fields(self):
@@ -80,7 +80,7 @@ class NewTopicTests(TestCase):
         data['subject'] = ''
         data['message'] = ''
         response = self.client.post(self.url, data)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertFalse(Topic.objects.exists())
         self.assertFalse(Post.objects.exists())
 
